@@ -70,7 +70,7 @@ export function ChatPanel({
               error={m.error}
             />
           ))}
-          {thinking && <Message role="assistant" content="Searching the document..." pending />}
+          {thinking && <Message role="assistant" content="" pending />}
         </div>
       </div>
 

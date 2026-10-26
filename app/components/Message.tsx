@@ -95,13 +95,29 @@ export function Message({ role, content, sources = [], pending, error }: Message
     );
   }
 
+  if (pending) {
+    return (
+      <div className="flex gap-3" role="status" aria-label="Generating answer">
+        <SparkleIcon className="mt-1 h-5 w-5 shrink-0 animate-pulse text-accent" />
+        <div className="flex h-7 items-center gap-1">
+          {[0, 150, 300].map((delay) => (
+            <span
+              key={delay}
+              className="h-1.5 w-1.5 animate-bounce rounded-full bg-text-muted"
+              style={{ animationDelay: `${delay}ms` }}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex gap-3">
       <SparkleIcon className="mt-1 h-5 w-5 shrink-0 text-accent" />
       <div
         className={cn(
           "min-w-0 flex-1 text-sm leading-relaxed text-text-primary",
-          pending && "text-text-muted italic",
           error && "text-red-400",
         )}
       >
